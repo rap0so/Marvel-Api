@@ -10,6 +10,6 @@ const notFoundImageSrc = {
 const Image: FC<TImageProps> = ({
   alt = 'Marvel API',
   src = notFoundImageSrc,
-}) => <img alt={alt} src={`${src.path}${src.extension}`} />;
+}) => <img alt={alt} src={`${src.path}.${src.extension}`} />;
 
 export default Image;

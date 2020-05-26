@@ -24,6 +24,7 @@
     "react-use-localstorage": "^3.4.1",
     "reflexbox": "^4.0.6",
     "styled-components": "^5.1.0",
+    "throttle-debounce": "^2.1.0",
     "typescript": "3.9.2"
   },
   "devDependencies": {
@@ -40,6 +41,7 @@
     "@types/reflexbox": "^4.0.1",
     "@types/storejs": "^2.0.3",
     "@types/styled-components": "^5.1.0",
+    "@types/throttle-debounce": "^2.1.0",
     "cypress": "^4.5.0",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
