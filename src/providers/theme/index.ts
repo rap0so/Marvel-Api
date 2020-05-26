@@ -1,9 +1,10 @@
 import { TTheme } from './types';
 
 const colors = {
-  base: '#404040',
-  dark: '#F8F8F9',
-  light: '#39b2c2',
+  base: '#a71e1e',
+  dark: '#1f1f1f',
+  light: '#F8F8F9',
+  semiDark: '#252525',
 };
 
 const theme: TTheme = {
