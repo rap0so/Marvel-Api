@@ -5,7 +5,6 @@ export type TTheme = {
     dark: string;
     base: string;
   };
-  spaces: string[];
   texts: {
     normal: {
       color: string;

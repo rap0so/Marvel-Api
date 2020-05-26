@@ -6,12 +6,9 @@ const colors = {
   light: '#39b2c2',
 };
 
-const numberFromZeroToHundred = [...Array(10)].map((_, idx) => String(idx * 5));
-
 const theme: TTheme = {
   colors,
   boxShadow: '0 1px 4px -1px #808080',
-  spaces: numberFromZeroToHundred,
   texts: {
     normal: {
       color: colors.light,
