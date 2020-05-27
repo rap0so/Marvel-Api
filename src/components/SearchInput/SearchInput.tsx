@@ -14,7 +14,12 @@ const SearchInput: FC<TSearchInputProps> = ({ onSearch }) => {
   const onDebouncedonSearch = (event: React.ChangeEvent<HTMLInputElement>) =>
     debouncedOnSearch(event.currentTarget.value);
 
-  return <SearchInputStyled onChange={onDebouncedonSearch} />;
+  return (
+    <SearchInputStyled
+      onChange={onDebouncedonSearch}
+      placeholder="Search here..."
+    />
+  );
 };
 
 export default SearchInput;
