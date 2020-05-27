@@ -7,3 +7,9 @@ export type TMarvelPublicTypes =
   | 'stories';
 
 export type TGeneralCallback = (arg?: any) => any;
+
+export type TGeneralCallThatReturnsAnObject = (
+  arg?: any,
+) => {
+  [key: string]: any;
+};
