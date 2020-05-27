@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
-import { Box, Flex } from 'reflexbox';
+import { Box } from 'reflexbox';
 
 import Image from 'components/Image';
+import Paragraph from 'components/Paragraph';
+import Title from 'components/Title';
 
 import { TCardProps } from './types';
 
@@ -15,15 +17,21 @@ const Card: FC<TCardProps> = ({
   const detail = description || 'No description provided yet';
 
   return (
-    <Flex flexDirection="column" p={1}>
+    <Box p={2}>
       <Box>
-        <h2>{denomination}</h2>
+        <Title color="#fff" fontSize="16px">
+          {denomination}
+        </Title>
       </Box>
       <Box>
         <Image src={thumbnail} alt={denomination} />
       </Box>
-      {description && <Box>{detail}</Box>}
-    </Flex>
+      {description && (
+        <Box>
+          <Paragraph>{detail}</Paragraph>
+        </Box>
+      )}
+    </Box>
   );
 };
 

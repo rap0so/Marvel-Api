@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SearchInputStyled = styled.input(({ theme }) => ({
+const SelectDataStyled = styled.select(({ theme }) => ({
   '&:hover, &:focus': {
     backgroundColor: theme.colors.semiDark,
     borderColor: theme.colors.light,
@@ -15,4 +15,4 @@ const SearchInputStyled = styled.input(({ theme }) => ({
   padding: '10px 15px',
 }));
 
-export default SearchInputStyled;
+export default SelectDataStyled;
