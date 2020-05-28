@@ -73,12 +73,12 @@ yarn lint:fix
 
 ## TODO
 
-- [ ] Add unit tests
+- [ ] Add unit tests to requests
 - [ ] Add E2e tests
 - [ ] Add accessibility support
 - [ ] Add CONTRIBUTE file
 - [ ] Add storybook
-- [ ] Improve project to receive all kind of data
+- [ ] Improve project to receive all kind of data from Marvel Api
 - [ ] Improve Navbar to be used in various pages
 - [ ] Create component ExceptionHandler
 - [ ] Add button to return home
