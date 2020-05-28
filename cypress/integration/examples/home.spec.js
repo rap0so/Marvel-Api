@@ -15,7 +15,13 @@ describe('Home', () => {
     });
   });
 
-  it.only('should redirect when click on card', () => {
+  it('should show "not char found" when not result', () => {
+    cy.get('input').type('asdasdadasdasd');
+
+    cy.contains('No character found, try again');
+  });
+
+  it('should redirect when click on card', () => {
     cy.location('pathname').should('eq', '/');
     cy.get('[data-testid="card"]').eq(4).click();
 
