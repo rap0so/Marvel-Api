@@ -9,19 +9,22 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from 'providers/theme';
 import GlobalStyle from 'providers/theme/components/globalStyle';
+import routes from 'routes';
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <GlobalStyle />
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<></>}>
       <Router>
         <Switch>
-          <Route
-            path="/"
-            component={lazy(() => import('pages/home'))}
-            exact={true}
-          />
-          <Route path="/404" component={lazy(() => import('pages/notFound'))} />
+          {routes.map((route, idx) => (
+            <Route
+              component={lazy(() => import(`${route.component}`))}
+              exact={route.exact}
+              key={idx}
+              path={route.path}
+            />
+          ))}
 
           <Redirect from="*" to="/404" />
         </Switch>
