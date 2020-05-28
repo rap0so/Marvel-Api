@@ -1,38 +1,49 @@
 import React, { FC } from 'react';
 import { Box } from 'reflexbox';
 
+import ClickableBox from 'components/ClickableBox';
 import Image from 'components/Image';
 import Paragraph from 'components/Paragraph';
 import Title from 'components/Title';
 
-import { TCardProps } from './types';
+import { TCharacterCardProps } from './types';
 
-const Card: FC<TCardProps> = ({
+const CharacterCard: FC<TCharacterCardProps> = ({
   description = '',
+  isSerie,
   name = '',
+  onClick,
+  title,
   thumbnail,
-  title = '',
+  urls,
 }) => {
   const denomination = name || title;
   const detail = description || 'No description provided yet';
+  const firstUrl = urls[0].url;
+
+  const onClickCallback = isSerie
+    ? () => window.location.replace(`${firstUrl}`)
+    : onClick;
 
   return (
-    <Box p={2}>
+    <ClickableBox p={2} onClick={onClickCallback}>
       <Box>
         <Title color="#fff" fontSize="16px">
           {denomination}
         </Title>
       </Box>
+
       <Box>
         <Image src={thumbnail} alt={denomination} />
       </Box>
+
       {description && (
         <Box>
           <Paragraph>{detail}</Paragraph>
         </Box>
       )}
-    </Box>
+    </ClickableBox>
   );
 };
 
-export default Card;
+export default CharacterCard;
