@@ -50,7 +50,7 @@ describe('Card', () => {
 
     const { getByText } = render(<Card {...fakeProps} />);
 
-    expect(getByText('Card with description')).toBeTruthy();
+    expect(getByText('No description provided yet')).toBeTruthy();
   });
 
   it('should invoke callback when clicked and isSerie', () => {
@@ -71,7 +71,7 @@ describe('Card', () => {
     expect(fakeFn).toHaveBeenCalled();
   });
 
-  it.only('should replace location to series page when clicked and !isSerie', () => {
+  it('should replace location to series page when clicked and !isSerie', () => {
     fakeProps.isSerie = true;
     // @ts-ignore
     delete window.location;
