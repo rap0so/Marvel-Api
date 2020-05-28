@@ -6,9 +6,9 @@ import Image from 'components/Image';
 import Paragraph from 'components/Paragraph';
 import Title from 'components/Title';
 
-import { TCharacterCardProps } from './types';
+import { TCardProps } from './types';
 
-const CharacterCard: FC<TCharacterCardProps> = ({
+const Card: FC<TCardProps> = ({
   description = '',
   isSerie,
   name = '',
@@ -46,4 +46,4 @@ const CharacterCard: FC<TCharacterCardProps> = ({
   );
 };
 
-export default CharacterCard;
+export default Card;

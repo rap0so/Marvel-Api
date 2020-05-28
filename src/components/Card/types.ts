@@ -1,6 +1,6 @@
 import { TGeneralCallback, TMarvelPublicResult } from 'types';
 
-export type TCharacterCardProps = {
+export type TCardProps = {
   description?: TMarvelPublicResult['description'];
   isSerie?: boolean;
   name?: TMarvelPublicResult['name'];
