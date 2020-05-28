@@ -37,11 +37,9 @@ const Card: FC<TCardProps> = ({
         <Image src={thumbnail} alt={denomination} />
       </Box>
 
-      {description && (
-        <Box>
-          <Paragraph>{detail}</Paragraph>
-        </Box>
-      )}
+      <Box>
+        <Paragraph>{detail}</Paragraph>
+      </Box>
     </ClickableBox>
   );
 };

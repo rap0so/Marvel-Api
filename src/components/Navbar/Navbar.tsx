@@ -7,9 +7,9 @@ import { TNavbarProps } from './types';
 import Title from 'components/Title';
 
 const Navbar: FC<TNavbarProps> = ({ onSearch }) => (
-  <Box mb={4}>
+  <Box data-testid="navbar" mb={4}>
     <Flex alignItems="center" justifyContent="space-between" py={3}>
-      <Title fontSize="18px">Home</Title>
+      <Title fontSize="18px">Marvel Api Consumer</Title>
 
       <Box>
         <SearchInput onSearch={onSearch} />
