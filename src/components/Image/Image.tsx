@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+
+import ImageStyled from './ImageStyled';
 import notFoundImage from './not-found.jpg';
 import { TImageProps } from './types';
 
@@ -10,6 +12,6 @@ const notFoundImageSrc = {
 const Image: FC<TImageProps> = ({
   alt = 'Marvel API',
   src = notFoundImageSrc,
-}) => <img alt={alt} src={`${src.path}.${src.extension}`} />;
+}) => <ImageStyled alt={alt} src={`${src.path}.${src.extension}`} />;
 
 export default Image;
