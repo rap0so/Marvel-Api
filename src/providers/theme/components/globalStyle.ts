@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle({
     color: '#f5f5f1',
     fontFamily:
       'Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
+    height: '100vh',
     margin: 0,
   },
   code: {
