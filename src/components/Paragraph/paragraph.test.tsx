@@ -12,7 +12,7 @@ describe('Paragraph', () => {
     expect(getByText('Text test')).toBeInTheDocument();
   });
 
-  it.only('should render styled props', () => {
+  it('should render styled props', () => {
     const { getByText } = render(
       <Paragraph>Not so big text example</Paragraph>,
     );
