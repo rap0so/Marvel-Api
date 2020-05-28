@@ -26,7 +26,7 @@ const Card: FC<TCardProps> = ({
     : onClick;
 
   return (
-    <ClickableBox p={2} onClick={onClickCallback}>
+    <ClickableBox data-testid="card" p={2} onClick={onClickCallback}>
       <Box>
         <Title color="#fff" fontSize="16px">
           {denomination}
