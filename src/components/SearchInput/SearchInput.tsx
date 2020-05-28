@@ -4,7 +4,7 @@ import { debounce } from 'throttle-debounce';
 import { TSearchInputProps } from './types';
 import SearchInputStyled from './SearchInputStyled';
 
-const TIME_TO_DEBOUNCE = 800;
+export const TIME_TO_DEBOUNCE: number = 800;
 
 const SearchInput: FC<TSearchInputProps> = ({ onSearch }) => {
   const debouncedOnSearch = debounce(TIME_TO_DEBOUNCE, (typedValue: string) =>
@@ -16,6 +16,7 @@ const SearchInput: FC<TSearchInputProps> = ({ onSearch }) => {
 
   return (
     <SearchInputStyled
+      data-testid="input"
       onChange={onDebouncedonSearch}
       placeholder="Search here..."
     />

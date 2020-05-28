@@ -1,9 +1,10 @@
 export type TTheme = {
   boxShadow: string;
   colors: {
-    light: string;
-    dark: string;
     base: string;
+    dark: string;
+    light: string;
+    semiDark: string;
   };
   texts: {
     normal: {
