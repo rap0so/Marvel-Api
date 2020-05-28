@@ -1,3 +1,4 @@
+import useLocalStorage from '@rehooks/local-storage';
 import React, { FC, useContext, useState, useMemo } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import { PacmanLoader } from 'react-spinners';
@@ -10,34 +11,51 @@ import FixedWrapper from 'components/FixedWrapper';
 import { getSeriesFromCharacter } from 'providers/request/request';
 import { TMarvelPublicResult } from 'types';
 
-// import useLocalStorage from 'react-use-localstorage';
+import { TIdParam } from './types';
 
 const Series: FC = () => {
-  const { id } = useParams();
-  const themeContext = useContext(ThemeContext);
-  const [series, setSeries] = useState<TMarvelPublicResult[]>([]);
+  const { id }: TIdParam = useParams();
 
-  const hasNoResult = !series.length;
+  const themeContext = useContext(ThemeContext);
+
+  const [series, setSeries] = useState<TMarvelPublicResult[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const [savedSeries, setSavedSeries] = useLocalStorage<{
+    [key: string]: any;
+  }>('series', {});
 
   useMemo(() => {
     (async () => {
-      if (id) {
-        const { data: dataResponse } = await getSeriesFromCharacter({
-          id,
-        });
+      if (!id) return;
+
+      const isSaved = savedSeries[id];
+      if (isSaved) {
+        setIsLoading(false);
+        return setSeries(isSaved);
+      }
+
+      const { data: dataResponse } = await getSeriesFromCharacter({
+        id,
+      });
+
+      const { results } = dataResponse?.data ?? {};
+
+      if (results) {
+        setSavedSeries({ ...savedSeries, [id]: results });
+        setIsLoading(false);
         return setSeries(dataResponse?.data?.results);
       }
     })();
-  }, [id]);
+  }, [id, savedSeries, setSavedSeries]);
 
-  // TODO: store searched data
-  // const [savedCharacters, setSavedCharacters] = useLocalStorage('characters', '')
+  const hasNoResult = !isLoading && !series.length;
 
-  if (!id) {
+  if (!id || hasNoResult) {
     return <Redirect to="/404" />;
   }
 
-  if (hasNoResult) {
+  if (isLoading) {
     return (
       <FixedWrapper
         alignItems="center"

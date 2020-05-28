@@ -1,3 +1,4 @@
+import useLocalStorage from '@rehooks/local-storage';
 import React, {
   FC,
   useContext,
@@ -18,14 +19,18 @@ import FixedWrapper from 'components/FixedWrapper';
 import { useHistory } from 'react-router-dom';
 import { TMarvelPublicResult } from 'types';
 
-// import useLocalStorage from 'react-use-localstorage';
-
 const Home: FC = () => {
   const history = useHistory();
 
   const themeContext = useContext(ThemeContext);
+
+  const [savedCharacters, setSavedCharacters] = useLocalStorage<{
+    [key: string]: any;
+  }>('characters', {});
+
   const [characters, setCharacters] = useState<TMarvelPublicResult[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const [valueToSearch, setValueToSearch] = useReducer(
     (_: string, newState: string) => {
       setIsLoading(true);
@@ -44,27 +49,32 @@ const Home: FC = () => {
 
   useMemo(() => {
     (async () => {
-      if (valueToSearch) {
-        const { data: dataResponse } = await getCharacter({
-          name: valueToSearch,
-        });
-
-        setIsLoading(false);
-        return setCharacters(dataResponse?.data?.results);
+      const isSaved = savedCharacters[valueToSearch];
+      if (isSaved) {
+        setCharacters(isSaved);
+        return setIsLoading(false);
       }
+
+      const { data: dataResponse } = await getCharacter({
+        name: valueToSearch,
+      });
+
+      const { results } = dataResponse?.data ?? {};
+
+      if (results) {
+        setSavedCharacters({ ...savedCharacters, [valueToSearch]: results });
+        setCharacters(results);
+      }
+
+      return setIsLoading(false);
     })();
-  }, [valueToSearch]);
+  }, [savedCharacters, setSavedCharacters, valueToSearch]);
 
-  // TODO: store searched data
-  // const [savedCharacters, setSavedCharacters] = useLocalStorage('characters', '')
-
-  const mappedResult = characters.map((character, idx) => {
-    return (
-      <Box flexDirection="column" key={idx} mb={2} width="25%">
-        <Card {...character} onClick={redirectToSeries(character.id)} />
-      </Box>
-    );
-  });
+  const mappedResult = characters.map((character, idx) => (
+    <Box flexDirection="column" key={idx} mb={2} width="25%">
+      <Card {...character} onClick={redirectToSeries(character.id)} />
+    </Box>
+  ));
 
   if (isLoading) {
     return (
