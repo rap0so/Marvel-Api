@@ -1,12 +1,12 @@
 const routes = [
   {
-    exact: true,
     component: './pages/home',
+    exact: true,
     path: '/',
   },
   {
-    exact: true,
     component: './pages/series',
+    exact: true,
     path: '/series/:id',
   },
   {
